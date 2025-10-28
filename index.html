@@ -1,79 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Auto Play All Sounds</title>
-<style>
-  body {
-    background: #000; color: #fff; text-align: center;
-    font-family: Arial, sans-serif; padding: 40px;
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>Auto Open Tabs</title>
 </head>
 <body>
-<h1>🎧 Attempting to play all sounds...</h1>
-<p>If your browser blocks autoplay, click anywhere to start.</p>
+  <script>
+    const count = 5; // change this number for how many tabs to open
+    const url = "https://example.com"; // change to your desired URL
 
-<script>
-const audioFolder = 'audios/';
-const files = [
-  'dry-fart.mp3',
-  'dun.mp3',
-  'fun.mp3',
-  'labubu.mp3',
-  'start.mp3'
-];
-
-// Create Audio objects
-const audios = files.map(f => new Audio(audioFolder + f));
-
-// Sequential playback
-async function playSequential() {
-  for (const a of audios) {
-    try {
-      await playOne(a);
-    } catch(e) { console.warn(e); }
-  }
-}
-
-function playOne(audio) {
-  return new Promise(resolve => {
-    audio.addEventListener('ended', resolve, {once:true});
-    audio.addEventListener('error', resolve, {once:true});
-    audio.play().then(resolve).catch(err => {
-      console.log('Autoplay blocked, retrying soon:', err);
-      resolve(); // continue sequence
-    });
-  });
-}
-
-// Try to play on load
-function tryPlayAll() {
-  console.log('Trying autoplay...');
-  for (const a of audios) {
-    a.play().catch(()=>{}); // best-effort concurrent play
-  }
-  // also attempt sequentially (some browsers allow one active stream)
-  playSequential();
-}
-
-// Keep retrying every second until any audio starts
-let retryInterval = setInterval(() => {
-  const anyPlaying = audios.some(a => !a.paused);
-  if (!anyPlaying) tryPlayAll();
-  else {
-    clearInterval(retryInterval);
-    console.log('✅ Audio is playing');
-  }
-}, 1000);
-
-// If user clicks/touches anywhere, retry immediately
-document.addEventListener('click', () => {
-  console.log('User interaction detected, forcing play');
-  tryPlayAll();
-}, {once:true});
-
-window.addEventListener('load', tryPlayAll);
-</script>
+    window.onload = () => {
+      for (let i = 0; i < count; i++) {
+        window.open(url, "_blank");
+      }
+    };
+  </script>
+  <p>If your browser blocks the tabs, allow pop-ups for this page and reload.</p>
 </body>
 </html>
