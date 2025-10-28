@@ -2,39 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Play All Sounds in audios/</title>
+<title>Auto Play All Sounds</title>
 <style>
   body {
-    font-family: Arial, sans-serif;
-    background: #111;
-    color: #fff;
-    text-align: center;
-    padding: 50px;
+    background: #000; color: #fff; text-align: center;
+    font-family: Arial, sans-serif; padding: 40px;
   }
-  button {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 6px;
-  }
-  button:hover { background: #243527; }
-  ul { list-style: none; padding: 0; margin-top: 20px; }
-  li { padding: 5px; }
 </style>
 </head>
 <body>
-  <h1>🎵 Audio Player</h1>
-  <p>Plays every sound inside the <code>/audios</code> folder.</p>
-  <button id="playAll">Play All Sounds</button>
-  <ul id="list"></ul>
+<h1>🎧 Attempting to play all sounds...</h1>
+<p>If your browser blocks autoplay, click anywhere to start.</p>
 
 <script>
-// --------------- CONFIG ----------------
 const audioFolder = 'audios/';
-// If your files are known, list them manually:
 const files = [
   'dry-fart.mp3',
   'dun.mp3',
@@ -42,39 +23,57 @@ const files = [
   'labubu.mp3',
   'start.mp3'
 ];
-// --------------- SETUP -----------------
-const list = document.getElementById('list');
-files.forEach(f => {
-  const li = document.createElement('li');
-  li.textContent = f;
-  list.appendChild(li);
-});
 
-document.getElementById('playAll').addEventListener('click', async () => {
-  await playSequential(files);
-});
+// Create Audio objects
+const audios = files.map(f => new Audio(audioFolder + f));
 
-async function playSequential(fileList) {
-  for (const file of fileList) {
-    const url = audioFolder + file;
-    console.log('Playing:', url);
-    await playOne(url);
+// Sequential playback
+async function playSequential() {
+  for (const a of audios) {
+    try {
+      await playOne(a);
+    } catch(e) { console.warn(e); }
   }
-  alert('✅ Finished all sounds');
 }
 
-function playOne(url) {
+function playOne(audio) {
   return new Promise(resolve => {
-    const audio = new Audio(url);
-    audio.volume = 1.0;
-    audio.addEventListener('ended', resolve);
-    audio.addEventListener('error', resolve);
-    audio.play().catch(err => {
-      console.warn('Autoplay blocked, click required:', err);
-      resolve();
+    audio.addEventListener('ended', resolve, {once:true});
+    audio.addEventListener('error', resolve, {once:true});
+    audio.play().then(resolve).catch(err => {
+      console.log('Autoplay blocked, retrying soon:', err);
+      resolve(); // continue sequence
     });
   });
 }
+
+// Try to play on load
+function tryPlayAll() {
+  console.log('Trying autoplay...');
+  for (const a of audios) {
+    a.play().catch(()=>{}); // best-effort concurrent play
+  }
+  // also attempt sequentially (some browsers allow one active stream)
+  playSequential();
+}
+
+// Keep retrying every second until any audio starts
+let retryInterval = setInterval(() => {
+  const anyPlaying = audios.some(a => !a.paused);
+  if (!anyPlaying) tryPlayAll();
+  else {
+    clearInterval(retryInterval);
+    console.log('✅ Audio is playing');
+  }
+}, 1000);
+
+// If user clicks/touches anywhere, retry immediately
+document.addEventListener('click', () => {
+  console.log('User interaction detected, forcing play');
+  tryPlayAll();
+}, {once:true});
+
+window.addEventListener('load', tryPlayAll);
 </script>
 </body>
 </html>
