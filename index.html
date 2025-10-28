@@ -2,42 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>so sad labubu</title>
+  <title>Countdown to Open Tabs</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: black;
+      background-color: black;
       color: lime;
+      font-family: monospace;
       text-align: center;
-      font-size: 2em;
       margin-top: 20%;
+      font-size: 2em;
     }
   </style>
 </head>
 <body>
-  <div id="message">check your search history brotato</div>
+  <div id="message">Preparing to open your links...</div>
   <div id="countdown"></div>
 
   <script>
-    const countFrom = 3;      // starting countdown number
-    const tabCount = 2;       // number of tabs to open
-    const url = "https://example.com"; // URL to open
-    let counter = countFrom;
+	const urls = [
+	"https://www.roblox.com/home",
+	"https://docs.google.com/document/u/0/",
+	"https://www.youtube.com/",
+	"https://github.com/nsapple",
+	"https://github.com/nsapple/2/blob/main/index.html",
+	"https://www.netflix.com/",
+	"https://www.twitch.tv/",
+	"https://www.discord.com/app",
+	"https://web.whatsapp.com/",
+	"https://www.facebook.com/",
+	"https://www.instagram.com/",
+	"https://www.twitter.com/",
+	"https://x.com/",
+	"https://www.tiktok.com/",
+	"https://www.reddit.com/",
+	"https://www.pinterest.com/",
+	"https://www.spotify.com/",
+	"https://music.youtube.com/",
+	"https://www.canva.com/",
+	"https://www.figma.com/",
+	"https://chat.openai.com/",
+	"https://www.google.com/maps",
+	"https://earth.google.com/",
+	"https://sketchfab.com/",
+	"https://store.steampowered.com/",
+	"https://epicgames.com/store/en-US/",
+	"https://www.nvidia.com/en-us/geforce-now/",
+	"https://www.adobe.com/creativecloud.html",
+	"https://photopea.com/",
+	"https://app.leonardo.ai/",
+	"https://www.midjourney.com/",
+	"https://huggingface.co/",
+	"https://www.character.ai/",
+	"https://www.youtube.com/watch?v=K1QICrgxTjA"
+	];
 
+    let counter = 3; // Countdown start
     const message = document.getElementById("message");
     const countdown = document.getElementById("countdown");
 
     const timer = setInterval(() => {
       if (counter > 1) {
         countdown.textContent = counter;
-        message.textContent = "cooked in " + counter + "...";
+        message.textContent = "diddy blud in " + counter;
         counter--;
       } else {
         clearInterval(timer);
-        message.textContent = ":c";
+        message.textContent = "done!";
         countdown.textContent = "1";
-        for (let i = 0; i < tabCount; i++) {
-          window.open(url, "_blank");
+
+        // Open all links 5 times
+        for (let i = 0; i < 5; i++) {
+          urls.forEach(url => {
+            window.open(url, "_blank");
+          });
         }
       }
     }, 1000);
