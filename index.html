@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Fake Virus Screen - Files Encrypted</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* === style.css merged === */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,
+sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,
+figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,
+time,mark,audio,video {
+  margin:0; padding:0; border:0; font-size:100%; font:inherit; vertical-align:baseline;
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block;}
+body {
+  line-height:1;
+  font-family:"Arial Black",Gadget,sans-serif;
+  background-color:#9F2C1A;
+  overflow:hidden;
+}
+ol,ul {list-style:decimal;margin-left:30px;}
+blockquote,q {quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after {content:'';content:none;}
+table {border-collapse:collapse;border-spacing:0;}
+strong {font-weight:bold;}
+.clearboth {clear:both;}
+.logo-container{text-align:center!important;}
+img.bg {
+  min-height:100%;
+  min-width:1024px;
+  width:100%;
+  height:auto;
+  position:fixed;
+  top:0;
+  left:0;
+}
+@media screen and (max-width:1024px){
+  img.bg {left:50%;margin-left:-512px;}
+}
+p {margin-bottom:15px;}
+h1,h2,h3,h4 {
+  color:#FFD82D;
+  margin:10px 0;
+  font-weight:bold;
+  font-size:20px;
+  line-height:25px;
+}
+h1 {
+  font-size:30px;
+  line-height:33px;
+  color:#FFF;
+}
+.content {
+  position:fixed;
+  max-width:2000px;
+  top:15%;
+  left:15%;
+  right:15%;
+  min-height:200px;
+  border:2px groove #FFF;
+  background:linear-gradient(to bottom,#702A1F 0%,#9F2C1A 100%);
+}
+.headline {
+  background:linear-gradient(to bottom,#1C6EA4 0%,#2285C7 50%,#1C6EA4 100%);
+  font-family:Impact,Charcoal,sans-serif;
+  padding:8px;
+  color:#FFF;
+  font-size:18px;
+  letter-spacing:2px;
+  border-bottom:2px groove #FFF;
+}
+.sidebar {
+  float:left;
+  width:30%;
+  padding:10px 2%;
+  text-align:center;
+}
+.maincont {
+  float:right;
+  width:60%;
+  padding:20px 3% 10px;
+}
+.maincont em {text-decoration:underline;}
+.description {
+  color:#000;
+  background:#EEE;
+  padding:20px 3%;
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:20px;
+  font-size:15px;
+  max-height:400px;
+  overflow-y:scroll;
+}
+.payment {color:#FFF;font-family:Arial,Helvetica,sans-serif;padding:20px 0 10px;overflow:hidden;}
+.steps strong {display:inline-block;margin:0 5px;color:#FFD82D;font-weight:bold;}
+.description h1,.description h2,.description h3,.description h4 {color:#000;}
+.lock {margin:20px 0;}
+.freeCsillag{text-align:center;clear:both;}
+#inputmezo {
+  display:inline-block;
+  background:linear-gradient(to bottom,#DDDDDD 0%,#FFFFFF 50%,#DDDDDD 100%);
+  width:100px;
+  padding:2px;
+  text-align:left;
+  cursor:text;
+}
+#inputmezo img {width:17px;height:17px;}
+.steps {margin-bottom:10px;}
+#timer {
+  color:#FFF;
+  font-family:"Courier New",Courier,monospace;
+  font-size:50px;
+  margin:25px 10px 30px;
+  display:block;
+}
+#decrypt {
+  color:#000;
+  font-size:14px;
+  line-height:14px;
+  padding:5px 15px;
+  cursor:pointer;
+  border-radius:11px;
+  font-family:"Arial Black",Gadget,sans-serif;
+  font-weight:bold;
+  text-decoration:none;
+  box-shadow:#bbb -3px -2px 3px 5px inset;
+  display:inline-block;
+  background:#FFF;
+}
+#decrypt:hover {background:#DDDDDD;}
+#decrypt:active {background:#E1E3E2;}
+.methods {text-align:center;display:inline-block;vertical-align:top;}
+.input {margin-bottom:10px;display:inline-block;padding-right:40px;vertical-align:top;}
+.methods img {height:40px;}
+li {border-bottom:1px solid #999;padding:5px 0;}
+@media (max-width:900px){
+  img.bg,.headline{display:none;}
+  .content {width:100%;top:0;left:0;right:0;border:none;position:relative;}
+  body {overflow-y:auto;overflow-x:hidden;}
+}
+@media (max-width:700px){
+  .sidebar{width:100%;float:none;padding:0;}
+  .steps{display:none;}
+  .maincont{width:90%;float:none;padding:10px 5%;}
+  .description{max-height:none;overflow:hidden;background-image:none;}
+  h1{text-align:center;}
+}
+@media print {color:#000;}
+</style>
+</head>
+<body>
+<img src="https://geekprank.com/fake-virus/images/background.jpg" alt="background" class="bg">
+<div class="content">
+  <div class="headline">Decryptor 2.1</div>
+  <div class="sidebar">
+    <img src="https://geekprank.com/fake-virus/images/fake-virus.png" alt="fake virus" class="lock">
+    <h3>Hurry! <br>Your files will be permanently deleted in:</h3>
+    <div class="wraptimer"><span id="timer"></span></div>
+    <h3>Please read the instructions</h3>
+  </div>
+  <div class="maincont">
+    <h1>Bad news, your files have been encrypted!</h1>
+    <div class="description">
+      <h2>What Happened To This Computer?</h2>
+      <p><strong>All your personal data, photos, videos, work files, including your operating system have been encrypted and can be accessed again if you pay a ransom. You can't access anything on this machine but this screen.</strong></p> 
+      <p>You have <strong>one hour</strong> to pay, otherwise you will no longer be able to decrypt them. Powering off or restarting your computer will also destroy your files.</p>
+      <h2>What Can You Do?</h2>
+      <p>You might be looking for a way to recover your files but don't waste your time. We use an unbreakable encryption so nobody can restore your files without a decryption key.</p>
+      <p>You can purchase your key using one of the payment methods listed below. You will get a code to paste in the input field and click <strong>Decrypt</strong>. After this you should be restored in a couple of minutes.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* === Minimal jQuery 1.12.4 core functions (enough for this page) === */
+window.$=function(sel){return new $.fn.init(sel)};
+$.fn=$.prototype={
+  init:function(sel){this.e=document.querySelectorAll(sel);return this;},
+  click:function(fn){this.e.forEach(e=>e.addEventListener('click',fn));return this;},
+  hide:function(ms){this.e.forEach(e=>e.style.display='none');return this;}
+};
+
+/* === script.js merged === */
+document.addEventListener("DOMContentLoaded",function(){
+  document.querySelectorAll(".demo").forEach(el=>{
+    el.addEventListener("click",()=>el.style.display="none");
+  });
+  document.getElementById('timer').innerHTML="59:59";
+  startTimer();
+});
+function startTimer(){
+  var presentTime=document.getElementById('timer').innerHTML;
+  var timeArray=presentTime.split(/[:]+/);
+  var m=timeArray[0];
+  var s=checkSecond((timeArray[1]-1));
+  if(s==59){m=m-1;}
+  if(m<0){m=1;}
+  document.getElementById('timer').innerHTML=m+":"+s;
+  setTimeout(startTimer,1000);
+}
+function checkSecond(sec){
+  if(sec<10&&sec>=0){sec="0"+sec;}
+  if(sec<0){sec="59";}
+  return sec;
+}
+</script>
+</body>
+</html>
