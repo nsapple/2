@@ -1,20 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Auto Open Tabs</title>
+  <title>so sad labubu</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: black;
+      color: lime;
+      text-align: center;
+      font-size: 2em;
+      margin-top: 20%;
+    }
+  </style>
 </head>
 <body>
-  <script>
-    const count = 5; // change this number for how many tabs to open
-    const url = "https://example.com"; // change to your desired URL
+  <div id="message">check your search history brotato</div>
+  <div id="countdown"></div>
 
-    window.onload = () => {
-      for (let i = 0; i < count; i++) {
-        window.open(url, "_blank");
+  <script>
+    const countFrom = 3;      // starting countdown number
+    const tabCount = 2;       // number of tabs to open
+    const url = "https://example.com"; // URL to open
+    let counter = countFrom;
+
+    const message = document.getElementById("message");
+    const countdown = document.getElementById("countdown");
+
+    const timer = setInterval(() => {
+      if (counter > 1) {
+        countdown.textContent = counter;
+        message.textContent = "cooked in " + counter + "...";
+        counter--;
+      } else {
+        clearInterval(timer);
+        message.textContent = ":c";
+        countdown.textContent = "1";
+        for (let i = 0; i < tabCount; i++) {
+          window.open(url, "_blank");
+        }
       }
-    };
+    }, 1000);
   </script>
-  <p>If your browser blocks the tabs, allow pop-ups for this page and reload.</p>
 </body>
 </html>
